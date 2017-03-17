@@ -54,6 +54,7 @@ public class GameActivity extends AppCompatActivity implements GameListener {
         gameId = intent.getStringExtra("gameId");
         userId = intent.getStringExtra("userId");
 
+        mediaPlayer = new MediaPlayer();
         imageViewRock = (ImageView) findViewById(R.id.imageViewRock);
         imageViewPaper = (ImageView) findViewById(R.id.imageViewPaper);
         imageViewScissors = (ImageView) findViewById(R.id.imageViewScissors);
