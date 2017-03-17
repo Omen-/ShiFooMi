@@ -1,7 +1,6 @@
 package com.m2dl.shifoomi.actions;
 
 import com.m2dl.shifoomi.database.room.Room;
-import com.m2dl.shifoomi.repository.room.RoomRepository;
 import com.m2dl.shifoomi.repository.room.RoomRepositoryFirebase;
 
 public class CreateRoom {
@@ -14,7 +13,9 @@ public class CreateRoom {
         this.userId = userId;
     }
 
-    public void execute() {
-        RoomRepositoryFirebase.getInstance().createRoom(new Room(userId, name));
+    public String execute() {
+        Room room = new Room(userId, name);
+        RoomRepositoryFirebase.getInstance().createRoom(room);
+        return room.getId();
     }
 }

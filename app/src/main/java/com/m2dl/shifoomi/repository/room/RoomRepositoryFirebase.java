@@ -13,7 +13,11 @@ import java.util.List;
 
 public class RoomRepositoryFirebase implements RoomRepository, ValueEventListener {
 
-    private static final RoomRepository instance = new RoomRepositoryFirebase();
+    private static final RoomRepository instance;
+
+    static {
+        instance = new RoomRepositoryFirebase();
+    }
 
     public static RoomRepository getInstance() {
         return instance;

@@ -15,9 +15,10 @@ public class CreateGameFromRoom {
         this.userId = userId;
     }
 
-    public void execute() {
+    public String execute() {
         RoomRepositoryFirebase.getInstance().deleteRoom(room.getId());
         Game game = new Game(room.getUserId(), userId);
         GameRepositoryFirebase.getInstance().createGame(game);
+        return game.getId();
     }
 }

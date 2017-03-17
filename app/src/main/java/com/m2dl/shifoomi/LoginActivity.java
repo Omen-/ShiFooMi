@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -32,6 +33,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.m2dl.shifoomi.repository.game.GameRepositoryFirebase;
+import com.m2dl.shifoomi.repository.room.RoomRepositoryFirebase;
+import com.m2dl.shifoomi.service.game.GameService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +63,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        RoomRepositoryFirebase.getInstance();
+        GameRepositoryFirebase.getInstance();
+        GameService.getInstance();
 
         /***
          *

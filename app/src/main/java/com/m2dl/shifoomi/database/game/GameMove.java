@@ -1,11 +1,8 @@
 package com.m2dl.shifoomi.database.game;
 
 import com.google.firebase.database.IgnoreExtraProperties;
-import com.m2dl.shifoomi.database.user.User;
 
 import org.joda.time.Instant;
-
-import java.util.UUID;
 
 @IgnoreExtraProperties
 public class GameMove {

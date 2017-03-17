@@ -1,16 +1,15 @@
 package com.m2dl.shifoomi;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.m2dl.shifoomi.actions.PlayTurn;
 import com.m2dl.shifoomi.database.game.GameMoveType;
-import com.m2dl.shifoomi.database.room.Room;
 import com.m2dl.shifoomi.service.game.GameListener;
-import com.m2dl.shifoomi.service.game.GameService;
+import com.m2dl.shifoomi.service.game.GameScore;
 
 public class GameActivity extends AppCompatActivity implements GameListener {
 
@@ -103,7 +102,7 @@ public class GameActivity extends AppCompatActivity implements GameListener {
     }
 
     @Override
-    public void scoreUpdated() {
+    public void scoreUpdated(GameScore score) {
 
     }
 
