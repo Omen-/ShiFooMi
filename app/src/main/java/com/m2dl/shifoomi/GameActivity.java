@@ -53,11 +53,16 @@ public class GameActivity extends AppCompatActivity implements GameListener {
         imageViewPaper = (ImageView) findViewById(R.id.imageViewPaper);
         imageViewScissors = (ImageView) findViewById(R.id.imageViewScissors);
         imageViewOpponentHand = (ImageView) findViewById(R.id.imageViewOpponentHand);
+        imageViewAnnouncement = (ImageView) findViewById(R.id.imageViewAnnouncement);
 
         textViewPlayerScore = (TextView) findViewById(R.id.textViewPlayerScore);
         textViewOpponentScore = (TextView) findViewById(R.id.textViewOpponentScore);
 
         playReady = false;
+        imageViewRock.setClickable(true);
+        imageViewPaper.setClickable(true);
+        imageViewScissors.setClickable(true);
+        imageViewRock.setClickable(true);
         imageViewRock.setEnabled(false);
         imageViewPaper.setEnabled(false);
         imageViewScissors.setEnabled(false);
@@ -74,8 +79,6 @@ public class GameActivity extends AppCompatActivity implements GameListener {
                 imageViewScissors.setVisibility(View.INVISIBLE);
 
                 playerGameMove = GameMoveType.ROCK;
-                new PlayTurn(gameId, userId, GameMoveType.ROCK, turn);
-                turn++;
             }
         });
 
@@ -91,8 +94,6 @@ public class GameActivity extends AppCompatActivity implements GameListener {
                 imageViewScissors.setVisibility(View.INVISIBLE);
 
                 playerGameMove = GameMoveType.PAPER;
-                new PlayTurn(gameId, userId, GameMoveType.PAPER, turn);
-                turn++;
             }
         });
 
@@ -108,8 +109,6 @@ public class GameActivity extends AppCompatActivity implements GameListener {
                 imageViewPaper.setVisibility(View.INVISIBLE);
 
                 playerGameMove = GameMoveType.SCISSORS;
-                new PlayTurn(gameId, userId, GameMoveType.SCISSORS, turn);
-                turn++;
             }
         });
         GameService.getInstance().addListener(userId, this);
@@ -149,42 +148,7 @@ public class GameActivity extends AppCompatActivity implements GameListener {
 
         int announcementImageId;
 
-        timerCount = 0;
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                imageViewAnnouncement.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        int announcementImageId = -1;
-                        switch (timerCount) {
-                            case 0:
-                                announcementImageId = getResources().getIdentifier("empty", "drawable", getPackageName());
-                                break;
-                            case 1:
-                                announcementImageId = getResources().getIdentifier("countdown_3", "drawable", getPackageName());
-                                break;
-                            case 2:
-                                announcementImageId = getResources().getIdentifier("countdown_2", "drawable", getPackageName());
-                                break;
-                            case 3:
-                                announcementImageId = getResources().getIdentifier("countdown_1", "drawable", getPackageName());
-                                break;
-                            case 4:
-                                imageViewOpponentHand.setImageResource(getOpponentImageId());
-                                announcementImageId = getRoundResultImageId();
-                                break;
-                            default:
-                        }
-
-                        if (announcementImageId != -1) {
-                            imageViewAnnouncement.setImageResource(announcementImageId);
-                        }
-                    }
-                });
-            }
-        }, 1000);
+        launchAnnouncementTimer();
     }
 
     public int getOpponentImageId() {
@@ -229,5 +193,45 @@ public class GameActivity extends AppCompatActivity implements GameListener {
         }
 
         return imageId;
+    }
+
+    public void launchAnnouncementTimer() {
+        timerCount = 0;
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                imageViewAnnouncement.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        int announcementImageId = -1;
+                        switch (timerCount) {
+                            case 0:
+                                announcementImageId = getResources().getIdentifier("empty", "drawable", getPackageName());
+                                break;
+                            case 1:
+                                announcementImageId = getResources().getIdentifier("countdown_3", "drawable", getPackageName());
+                                break;
+                            case 2:
+                                announcementImageId = getResources().getIdentifier("countdown_2", "drawable", getPackageName());
+                                break;
+                            case 3:
+                                announcementImageId = getResources().getIdentifier("countdown_1", "drawable", getPackageName());
+                                break;
+                            case 4:
+                                imageViewOpponentHand.setImageResource(getOpponentImageId());
+                                announcementImageId = getRoundResultImageId();
+                                new PlayTurn(gameId, userId, playerGameMove, turn++);
+                                break;
+                            default:
+                        }
+
+                        if (announcementImageId != -1) {
+                            imageViewAnnouncement.setImageResource(announcementImageId);
+                        }
+                    }
+                });
+            }
+        }, 1000);
     }
 }
