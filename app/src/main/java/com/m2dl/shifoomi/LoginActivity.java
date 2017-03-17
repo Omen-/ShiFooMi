@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
          final UUID userId = UUID.randomUUID();
          repositoryFirebase.addGameRepositoryListener(userId.toString(), new GameRepositoryListener() {
         @Override
-        public void gameCreated(Game game) {
+        public void gameUpdate(Game game) {
         System.out.println("1");
         repositoryFirebase.addGameMove(game.getId(), new GameMove(userId.toString(), GameMoveType.PAPER, 1, Instant.now()));
         }

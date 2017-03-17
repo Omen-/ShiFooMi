@@ -9,14 +9,16 @@ import com.m2dl.shifoomi.database.game.Game;
 import com.m2dl.shifoomi.database.game.GameMove;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.UUID;
 
 public class GameRepositoryFirebase implements GameRepository {
 
     private static final String REPOSITORY_GAMES = "games";
+    private static GameRepository instance = new GameRepositoryFirebase();
+
+    public static GameRepository getInstance() {
+        return instance;
+    }
 
     @Override
     public void addGameMove(String gameId, GameMove gameMove) {
@@ -41,7 +43,7 @@ public class GameRepositoryFirebase implements GameRepository {
                 if(iterator.hasNext()) {
                     Game value = iterator.next().getValue(Game.class);
                     if (value != null)
-                        gameRepositoryListener.gameCreated(value);
+                        gameRepositoryListener.gameUpdate(value);
                 }
             }
 
