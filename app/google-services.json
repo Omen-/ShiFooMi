@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "30299791751",
+    "firebase_url": "https://shifoomi-5971e.firebaseio.com",
+    "project_id": "shifoomi-5971e",
+    "storage_bucket": "shifoomi-5971e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30299791751:android:dd28be67d9571bec",
+        "android_client_info": {
+          "package_name": "com.m2dl.shifoomi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "30299791751-7vmcf6nu1mpjt1oqtoo3oudbt860qd4r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPIfC1Yf6BbDYd-MVT6cv3vGtLo8Qpu70"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
