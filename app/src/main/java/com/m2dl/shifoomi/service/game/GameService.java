@@ -18,7 +18,7 @@ public class GameService {
         GameRepositoryFirebase.getInstance().addGameRepositoryListener(userId, new GameRepositoryListener() {
             @Override
             public void gameUpdate(Game game) {
-                if (game.getGameMoves().isEmpty()) {
+                if (!game.getGameMoves().isEmpty()) {
                     gameListener.scoreUpdated(computeScore(userId, game));
                     GameMove newMove = game.getGameMoves().get(game.getGameMoves().size() - 1);
                     if (!newMove.getUserId().equals(userId))
