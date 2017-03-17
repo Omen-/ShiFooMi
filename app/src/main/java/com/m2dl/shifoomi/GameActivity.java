@@ -138,7 +138,12 @@ public class GameActivity extends AppCompatActivity implements GameListener {
     @Override
     public void opponentPlayed(GameMoveType gameMoveType) {
 
-        imageViewOpponentHand.setImageResource(getOpponentImageId(gameMoveType));
+        imageViewOpponentHand.post(new Runnable() {
+            @Override
+            public void run() {
+                imageViewOpponentHand.setImageResource(getOpponentImageId(gameMoveType));
+            }
+        });
     }
 
     @Override
