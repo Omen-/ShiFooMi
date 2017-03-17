@@ -136,7 +136,7 @@ public class GameActivity extends AppCompatActivity implements GameListener {
     }
 
     @Override
-    public void opponentPlayed(GameMoveType gameMoveType) {
+    public void opponentPlayed(final GameMoveType gameMoveType) {
 
         imageViewOpponentHand.post(new Runnable() {
             @Override
