@@ -226,8 +226,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         showProgress(false);
-                        // TODO: uncomment this
-                        //startActivity(new Intent(this, MainMenuActivity.class));
+                        startActivity(new Intent(LoginActivity.this, MainMenuActivity.class));
                     }
                 })
                 .addOnFailureListener(this, new OnFailureListener() {
@@ -256,8 +255,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         showProgress(false);
-                        // TODO: uncomment this
-                        //startActivity(new Intent(this, MainMenuActivity.class));
+                        startActivity(new Intent(LoginActivity.this, MainMenuActivity.class));
                     }
                 });
     }
