@@ -34,6 +34,8 @@ public class GameActivity extends AppCompatActivity implements GameListener {
     private String userId;
     private String gameId;
 
+    private Timer timer;
+
     private boolean playReady;
     private int turn;
     private GameMoveType playerGameMove;
@@ -207,7 +209,7 @@ public class GameActivity extends AppCompatActivity implements GameListener {
 
     public void launchAnnouncementTimer() {
         timerCount = 0;
-        Timer timer = new Timer();
+        timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -232,6 +234,7 @@ public class GameActivity extends AppCompatActivity implements GameListener {
                                 imageViewOpponentHand.setImageResource(getOpponentImageId());
                                 announcementImageId = getRoundResultImageId();
                                 new PlayTurn(gameId, userId, playerGameMove, turn++).execute();
+                                timer.cancel();
                                 break;
                             default:
                         }
