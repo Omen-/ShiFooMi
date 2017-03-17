@@ -7,7 +7,7 @@ public interface GameListener {
 
     void opponentPlayed(GameMoveType gameMoveType);
 
-    void scoreUpdated();
+    void scoreUpdated(GameScore gameScore);
 
     void roundStart();
 }
