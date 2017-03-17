@@ -29,8 +29,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.m2dl.shifoomi.database.game.Game;
+import com.m2dl.shifoomi.database.game.GameMove;
+import com.m2dl.shifoomi.database.game.GameMoveType;
+import com.m2dl.shifoomi.repository.game.GameRepositoryFirebase;
+import com.m2dl.shifoomi.repository.game.GameRepositoryListener;
+
+import org.joda.time.Instant;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -61,10 +70,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    GameRepositoryFirebase repositoryFirebase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /***
+         *
+         *        repositoryFirebase = new GameRepositoryFirebase();
+         final UUID userId = UUID.randomUUID();
+         repositoryFirebase.addGameRepositoryListener(userId.toString(), new GameRepositoryListener() {
+        @Override
+        public void gameCreated(Game game) {
+        System.out.println("1");
+        repositoryFirebase.addGameMove(game.getId(), new GameMove(userId.toString(), GameMoveType.PAPER, 1, Instant.now()));
+        }
+        });
+         repositoryFirebase.createGame(new Game(userId.toString(), UUID.randomUUID().toString()));
+         */
+
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
