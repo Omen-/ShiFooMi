@@ -128,7 +128,7 @@ public class GameActivity extends AppCompatActivity implements GameListener {
     @Override
     public void opponentPlayed(GameMoveType gameMoveType) {
 
-        opponentGameMove = gameMoveType;
+        imageViewOpponentHand.setImageResource(getOpponentImageId(gameMoveType));
     }
 
     @Override
@@ -163,10 +163,10 @@ public class GameActivity extends AppCompatActivity implements GameListener {
         launchAnnouncementTimer();
     }
 
-    public int getOpponentImageId() {
+    public int getOpponentImageId(GameMoveType gameMoveType) {
 
         int imageId = 0;
-        switch (opponentGameMove) {
+        switch (gameMoveType) {
             case ROCK:
                 imageId = getResources().getIdentifier("hand_opponent_rock", "drawable", getPackageName());
                 break;
@@ -231,7 +231,6 @@ public class GameActivity extends AppCompatActivity implements GameListener {
                                 announcementImageId = getResources().getIdentifier("countdown_1", "drawable", getPackageName());
                                 break;
                             case 4:
-                                imageViewOpponentHand.setImageResource(getOpponentImageId());
                                 announcementImageId = getRoundResultImageId();
                                 new PlayTurn(gameId, userId, playerGameMove, turn++).execute();
                                 timer.cancel();

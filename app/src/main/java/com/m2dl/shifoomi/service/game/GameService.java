@@ -20,7 +20,9 @@ public class GameService {
             public void gameUpdate(Game game) {
                 if (!game.getGameMoves().isEmpty()) {
                     gameListener.scoreUpdated(computeScore(userId, game));
-                    gameListener.opponentPlayed(findLastOpponentMove(userId, game));
+                    GameMoveType lastOpponentMove = findLastOpponentMove(userId, game);
+                    if(lastOpponentMove != null)
+                        gameListener.opponentPlayed(lastOpponentMove);
                 }
                 if (isTurnFinished(game))
                     gameListener.roundStart();
@@ -39,7 +41,7 @@ public class GameService {
                 }
             }
         }
-        return foundGameMove == null ? GameMoveType.LOOSE : foundGameMove.getGameMoveType();
+        return foundGameMove == null ? null : foundGameMove.getGameMoveType();
     }
 
     private boolean isTurnFinished(Game game) {
