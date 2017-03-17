@@ -35,7 +35,7 @@ public class Game {
     }
 
     public String getSecondPlayerId() {
-        return firstPlayerId;
+        return secondPlayerId;
     }
 
     public List<GameMove> getGameMoves() {
