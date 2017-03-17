@@ -146,8 +146,6 @@ public class GameActivity extends AppCompatActivity implements GameListener {
         playerGameMove = GameMoveType.LOOSE;
         opponentGameMove = GameMoveType.LOOSE;
 
-        int announcementImageId;
-
         launchAnnouncementTimer();
     }
 
@@ -225,6 +223,7 @@ public class GameActivity extends AppCompatActivity implements GameListener {
                                 break;
                             default:
                         }
+                        timerCount++;
 
                         if (announcementImageId != -1) {
                             imageViewAnnouncement.setImageResource(announcementImageId);
