@@ -14,7 +14,7 @@ public class CreateRoom {
         this.userId = userId;
     }
 
-    void execute() {
+    public void execute() {
         RoomRepositoryFirebase.getInstance().createRoom(new Room(userId, name));
     }
 }
