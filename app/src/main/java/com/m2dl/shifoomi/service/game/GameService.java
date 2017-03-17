@@ -20,14 +20,28 @@ public class GameService {
             public void gameUpdate(Game game) {
                 if (!game.getGameMoves().isEmpty()) {
                     gameListener.scoreUpdated(computeScore(userId, game));
-                    GameMove newMove = game.getGameMoves().get(game.getGameMoves().size() - 1);
-                    if (!newMove.getUserId().equals(userId))
-                        gameListener.opponentPlayed(newMove.getGameMoveType());
+                    GameMoveType lastOpponentMove = findLastOpponentMove(userId, game);
+                    if(lastOpponentMove != null)
+                        gameListener.opponentPlayed(lastOpponentMove);
                 }
                 if (isTurnFinished(game))
                     gameListener.roundStart();
             }
         });
+    }
+
+    private GameMoveType findLastOpponentMove(String userId, Game game) {
+        int turn = 0;
+        GameMove foundGameMove = null;
+        for(GameMove gameMove : game.getGameMoves()) {
+            if (!gameMove.getUserId().equals(userId)) {
+                if(gameMove.getTurn() >= turn) {
+                    foundGameMove = gameMove;
+                    turn = gameMove.getTurn();
+                }
+            }
+        }
+        return foundGameMove == null ? null : foundGameMove.getGameMoveType();
     }
 
     private boolean isTurnFinished(Game game) {
