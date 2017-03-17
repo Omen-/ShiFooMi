@@ -4,5 +4,5 @@ import com.m2dl.shifoomi.database.game.Game;
 
 public interface GameRepositoryListener {
 
-    void gameCreated(Game game);
+    void gameUpdate(Game game);
 }
