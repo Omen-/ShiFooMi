@@ -219,7 +219,7 @@ public class GameActivity extends AppCompatActivity implements GameListener {
                             case 4:
                                 imageViewOpponentHand.setImageResource(getOpponentImageId());
                                 announcementImageId = getRoundResultImageId();
-                                new PlayTurn(gameId, userId, playerGameMove, turn++);
+                                new PlayTurn(gameId, userId, playerGameMove, turn++).execute();
                                 break;
                             default:
                         }
