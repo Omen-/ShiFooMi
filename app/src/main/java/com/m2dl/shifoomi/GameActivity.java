@@ -231,6 +231,6 @@ public class GameActivity extends AppCompatActivity implements GameListener {
                     }
                 });
             }
-        }, 1000);
+        }, 0, 1000);
     }
 }
