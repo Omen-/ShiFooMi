@@ -59,9 +59,9 @@ public class GameActivity extends AppCompatActivity implements GameListener {
         textViewOpponentScore = (TextView) findViewById(R.id.textViewOpponentScore);
 
         playReady = false;
-        imageViewRock.setClickable(true);
-        imageViewPaper.setClickable(true);
-        imageViewScissors.setClickable(true);
+        imageViewRock.setClickable(false);
+        imageViewPaper.setClickable(false);
+        imageViewScissors.setClickable(false);
         imageViewRock.setClickable(true);
         imageViewRock.setEnabled(false);
         imageViewPaper.setEnabled(false);
@@ -77,6 +77,9 @@ public class GameActivity extends AppCompatActivity implements GameListener {
                 imageViewScissors.setEnabled(false);
                 imageViewPaper.setVisibility(View.INVISIBLE);
                 imageViewScissors.setVisibility(View.INVISIBLE);
+                imageViewRock.setClickable(false);
+                imageViewPaper.setClickable(false);
+                imageViewScissors.setClickable(false);
 
                 playerGameMove = GameMoveType.ROCK;
             }
@@ -92,6 +95,9 @@ public class GameActivity extends AppCompatActivity implements GameListener {
                 imageViewScissors.setEnabled(false);
                 imageViewRock.setVisibility(View.INVISIBLE);
                 imageViewScissors.setVisibility(View.INVISIBLE);
+                imageViewRock.setClickable(false);
+                imageViewPaper.setClickable(false);
+                imageViewScissors.setClickable(false);
 
                 playerGameMove = GameMoveType.PAPER;
             }
@@ -107,6 +113,9 @@ public class GameActivity extends AppCompatActivity implements GameListener {
                 imageViewScissors.setEnabled(false);
                 imageViewRock.setVisibility(View.INVISIBLE);
                 imageViewPaper.setVisibility(View.INVISIBLE);
+                imageViewRock.setClickable(false);
+                imageViewPaper.setClickable(false);
+                imageViewScissors.setClickable(false);
 
                 playerGameMove = GameMoveType.SCISSORS;
             }
@@ -142,6 +151,9 @@ public class GameActivity extends AppCompatActivity implements GameListener {
         imageViewRock.setSelected(false);
         imageViewPaper.setSelected(false);
         imageViewScissors.setSelected(false);
+        imageViewRock.setClickable(true);
+        imageViewPaper.setClickable(true);
+        imageViewScissors.setClickable(true);
 
         playerGameMove = GameMoveType.LOOSE;
         opponentGameMove = GameMoveType.LOOSE;
