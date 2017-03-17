@@ -39,7 +39,7 @@ public class Game {
     }
 
     public List<GameMove> getGameMoves() {
-        if(gameMoves.isEmpty())
+        if(gameMoves != null)
             return new ArrayList<>();
         return new ArrayList<>(gameMoves.values());
     }
