@@ -221,6 +221,8 @@ public class GameActivity extends AppCompatActivity implements GameListener {
 
     public void launchAnnouncementTimer() {
         timerCount = 0;
+        if(timer != null)
+            timer.cancel();
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -228,6 +230,8 @@ public class GameActivity extends AppCompatActivity implements GameListener {
                 imageViewAnnouncement.post(new Runnable() {
                     @Override
                     public void run() {
+                        if(timerCount > 4)
+                            return;
                         int announcementImageId = -1;
                         switch (timerCount) {
                             case 0:
@@ -245,7 +249,6 @@ public class GameActivity extends AppCompatActivity implements GameListener {
                             case 4:
                                 announcementImageId = getRoundResultImageId();
                                 new PlayTurn(gameId, userId, playerGameMove, turn++).execute();
-                                timer.cancel();
                                 break;
                             default:
                         }
