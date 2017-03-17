@@ -39,6 +39,8 @@ public class Game {
     }
 
     public List<GameMove> getGameMoves() {
+        if(gameMoves.isEmpty())
+            return new ArrayList<>();
         return new ArrayList<>(gameMoves.values());
     }
 }
