@@ -22,6 +22,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private Button mPlayView;
 
     private Button buttonRules;
+    private Button buttonHighScores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,16 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent myIntent = new Intent(MainMenuActivity.this, RulesActivity.class);
+                MainMenuActivity.this.startActivity(myIntent);
+            }
+        });
+
+        buttonHighScores = (Button) findViewById(R.id.buttonHighScores);
+        buttonHighScores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent myIntent = new Intent(MainMenuActivity.this, HighScoresActivity.class);
                 MainMenuActivity.this.startActivity(myIntent);
             }
         });

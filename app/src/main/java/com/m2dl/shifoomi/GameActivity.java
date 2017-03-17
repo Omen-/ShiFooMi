@@ -2,6 +2,7 @@ package com.m2dl.shifoomi;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +42,8 @@ public class GameActivity extends AppCompatActivity implements GameListener {
     private GameMoveType playerGameMove;
     private GameMoveType opponentGameMove;
     private int timerCount;
+
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +87,8 @@ public class GameActivity extends AppCompatActivity implements GameListener {
                 imageViewScissors.setClickable(false);
 
                 playerGameMove = GameMoveType.ROCK;
+                mediaPlayer = MediaPlayer.create(GameActivity.this,R.raw.rock);
+                mediaPlayer.start();
             }
         });
 
@@ -102,6 +107,8 @@ public class GameActivity extends AppCompatActivity implements GameListener {
                 imageViewScissors.setClickable(false);
 
                 playerGameMove = GameMoveType.PAPER;
+                mediaPlayer = MediaPlayer.create(GameActivity.this,R.raw.paper);
+                mediaPlayer.start();
             }
         });
 
@@ -120,6 +127,8 @@ public class GameActivity extends AppCompatActivity implements GameListener {
                 imageViewScissors.setClickable(false);
 
                 playerGameMove = GameMoveType.SCISSORS;
+                mediaPlayer = MediaPlayer.create(GameActivity.this,R.raw.scissors);
+                mediaPlayer.start();
             }
         });
         GameService.getInstance().addListener(userId, this);
@@ -142,6 +151,8 @@ public class GameActivity extends AppCompatActivity implements GameListener {
 
     @Override
     public void roundStart() {
+
+        mediaPlayer.stop();
 
         playReady = true;
         imageViewRock.setEnabled(true);
