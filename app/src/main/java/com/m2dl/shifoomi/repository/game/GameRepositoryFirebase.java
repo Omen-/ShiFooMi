@@ -9,15 +9,22 @@ import com.m2dl.shifoomi.database.game.Game;
 import com.m2dl.shifoomi.database.game.GameMove;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class GameRepositoryFirebase implements GameRepository {
 
     private static final String REPOSITORY_GAMES = "games";
     private static GameRepository instance = new GameRepositoryFirebase();
+    private Map<GameRepositoryListener, ValueEventListener> listeners;
 
     public static GameRepository getInstance() {
         return instance;
+    }
+
+    private GameRepositoryFirebase() {
+        listeners = new HashMap<>();
     }
 
     @Override
@@ -52,6 +59,9 @@ public class GameRepositoryFirebase implements GameRepository {
 
             }
         };
+
+        listeners.put(gameRepositoryListener, valueEventListener);
+
         databaseReference.child(REPOSITORY_GAMES).orderByChild("firstPlayerId")
                 .equalTo(userId).addValueEventListener(valueEventListener);
         databaseReference.child(REPOSITORY_GAMES).orderByChild("secondPlayerId")
@@ -60,6 +70,11 @@ public class GameRepositoryFirebase implements GameRepository {
 
     @Override
     public void removeGameRepositoryListener(String userId, GameRepositoryListener gameRepositoryListener) {
-
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child(REPOSITORY_GAMES).orderByChild("firstPlayerId")
+                .equalTo(userId).addValueEventListener(listeners.get(gameRepositoryListener));
+        databaseReference.child(REPOSITORY_GAMES).orderByChild("secondPlayerId")
+                .equalTo(userId).removeEventListener(listeners.get(gameRepositoryListener));
+        listeners.remove(gameRepositoryListener);
     }
 }
